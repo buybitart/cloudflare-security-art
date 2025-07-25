@@ -76,6 +76,8 @@ Read [Create a custom rule in the dashboard](https://developers.cloudflare.com/w
 
 This rule stops bad automated web traffic by checking each request and blocking empty or strange User‑Agent names like headless browsers or scanners and traffic from certain IP groups that use "siteaudit" and Host headers that have ":80" or ":443" and wrong Cloudflare cookies and any Cloudflare client.bot that is not a verified search crawler or an ACME challenge and any HTTP/1.0 or HTTP/1.1 request unless it asks for "/robots.txt" or comes from a real search bot or an ACME check.
 
+> NOTE🔒 **This rule stops about 90% of all threats. It cuts off bad bot traffic before it reaches the application.**
+
 **Action:** Block
 
 ```plaintext
