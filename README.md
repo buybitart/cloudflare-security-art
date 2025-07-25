@@ -573,7 +573,8 @@ Go to **Security** > **Bots**
 5. Since I need to apply this rule to **All incoming requests** to my website, I select the first option for the If… section.
 6. In the Then… section, I will use Set **static** to set up security headers for my site. Here, I will add **7 recommended security headers**:
 
-<img width="1057" height="674" alt="image" src="https://github.com/user-attachments/assets/a0438804-6330-42e8-840a-ea5498e1f2ac" />
+<img width="988" height="610" alt="image" src="https://github.com/user-attachments/assets/59dc56ff-29c6-48a4-a7e3-fbce86f02028" />
+
 
 
 | Header name                    | Value                                                |
