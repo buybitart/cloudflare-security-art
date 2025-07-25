@@ -1,0 +1,86 @@
+(
+  http.user_agent contains "aiohttp" or
+  http.user_agent contains "aioquic" or
+  http.user_agent contains "curl" or
+  http.user_agent contains "okhttp" or
+  http.user_agent contains "python-requests" or
+  http.user_agent contains "python-httpx" or
+  http.user_agent contains "wget"
+) and not (
+  starts_with(http.host, "api.") or
+  starts_with(http.host, "cdn.") or
+  http.host eq "blocklist.sefinek.net"
+) or
+(http.request.uri.path wildcard "*.log*" and not http.host contains "cdn." and http.host ne "blocklist.sefinek.net") or
+(http.request.uri.path wildcard "*.py*") or
+(http.request.uri.path wildcard "*.sh*" and http.host ne "cdn.sefinek.net") or
+(http.request.uri.path wildcard "*.yaml*") or
+(http.request.uri.path wildcard "*.yml*") or
+(http.request.uri.path wildcard "*auth.json*") or
+(http.request.uri.path wildcard "*conf.*") or
+(http.request.uri.path wildcard "*crlfinjection*") or
+(http.request.uri.path wildcard "*curl%20*") or
+(http.request.uri.path wildcard "*curl+*") or
+(http.request.uri.path wildcard "*fancyupload*") or
+(http.request.uri.path wildcard "*php.ini*") or
+(http.request.uri.path wildcard "*phpinfo*") or
+(http.request.uri.path wildcard "*phpsysinfo*") or
+(http.request.uri.path wildcard "*settings.local*") or
+(http.request.uri.path wildcard "*settings.prod*") or
+(http.request.uri.path wildcard "*wget%20*") or
+(http.request.uri.path wildcard "*wget+*") or
+(http.request.uri.query contains "%00") or
+(http.request.uri.query contains "%0A") or
+(http.request.uri.query contains "%0D") or
+(http.request.uri.query contains "%2e%2e") or
+(http.request.uri.query contains "..%2f") or
+(http.request.uri.query contains "..%5c") or
+(http.request.uri.query contains "../") or
+(http.request.uri.query contains "..\\") or
+(http.request.uri.query contains "squelette=../") or
+(http.request.uri.query wildcard "*auto_prepend_file*") or
+(http.request.uri.query wildcard "*crlfinjection*") or
+(http.request.uri.query wildcard "*curl%20*") or
+(http.request.uri.query wildcard "*curl+*") or
+(http.request.uri.query wildcard "*ed25519*") or
+(http.request.uri.query wildcard "*file://*") or
+(http.request.uri.query wildcard "*php://*") or
+(http.request.uri.query wildcard "*secrets.json*") or
+(http.request.uri.query wildcard "*set-cookie:*") or
+(http.request.uri.query wildcard "*wget%20*") or
+(http.request.uri.query wildcard "*wget+*") or
+(http.user_agent wildcard "*alittle client*") or
+(http.user_agent wildcard "*example.com*") or
+(http.user_agent wildcard "*php7.4-global*") or
+(http.request.uri.query contains ")/*") or 
+(http.request.uri.query contains ")--") or 
+(http.request.uri.query contains "benchmark(") or 
+(http.request.uri.query contains "'0:0:20'") or (
+http.request.uri.query contains "MD5(") or 
+(http.request.uri.query contains "%22") or 
+(http.request.uri.query contains "%20/*") or 
+(http.request.uri.query contains "%20--") or 
+(http.request.uri.query contains "%20%23") or 
+(http.request.uri.query contains ")%23") or (
+http.request.uri.query contains "script>") or 
+(http.request.uri.query contains "%40") or 
+(http.request.uri.query contains "%00") or 
+(http.request.uri.query contains "<?php") or 
+(http.request.uri.query contains "0x00") or 
+(http.request.uri.query contains "0x08") or 
+(http.request.uri.query contains "0x09") or 
+(http.request.uri.query contains "0x0a") or 
+(http.request.uri.query contains "0x0d") or 
+(http.request.uri.query contains "0x1a") or 
+(http.request.uri.query contains "0x22") or 
+(http.request.uri.query contains "0x25") or 
+(http.request.uri.query contains "0x27") or 
+(http.request.uri.query contains "0x5c") or 
+(http.request.uri.query contains "0x5f") or 
+(http.request.uri.query contains "0x50") or 
+(http.request.uri.query contains "0x3e") or 
+(http.request.uri.query contains "<img") or 
+(http.request.uri.query contains "<image") or 
+(http.request.uri.query contains "document.cookie") or 
+(http.request.uri.query contains "onerror()") or 
+(http.request.uri.query contains "alert(")

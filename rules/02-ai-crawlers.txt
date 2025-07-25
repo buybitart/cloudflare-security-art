@@ -1,0 +1,50 @@
+(
+  lower(http.user_agent) contains "amazonbot"           or
+  lower(http.user_agent) contains "googleother"         or
+  lower(http.user_agent) contains "gptbot"              or
+  lower(http.user_agent) contains "oai-searchbot"       or
+  lower(http.user_agent) contains "chatgpt"             or
+  lower(http.user_agent) contains "perplexitybot"       or
+  lower(http.user_agent) contains "claudebot"           or
+  lower(http.user_agent) contains "sbintuitionsbot"     or
+  lower(http.user_agent) contains "mistralai"           or
+  lower(http.user_agent) contains "youbot"              or
+  lower(http.user_agent) contains "timpibot"            or
+  lower(http.user_agent) contains "omgili"              or
+  lower(http.user_agent) contains "diffbot"             or
+  lower(http.user_agent) contains "ccbot"               or
+  lower(http.user_agent) contains "ai2bot"              or
+  lower(http.user_agent) contains "cohere"              or
+  lower(http.user_agent) contains "duckassistbot"       or
+  lower(http.user_agent) contains "bytespider"          or
+  lower(http.user_agent) contains "applebot"            or
+  lower(http.user_agent) contains "google-extended"     or
+  lower(http.user_agent) contains "anthropic"           or
+  (cf.verified_bot_category in {"AI Crawler" "Other"})  or
+  (http.user_agent wildcard "*2ip*") or
+  (http.user_agent wildcard "*archive.org_bot*") or
+  (http.user_agent wildcard "*awariobot*") or
+  (http.user_agent wildcard "*barkrowler*") or
+  (http.user_agent wildcard "*blexbot*") or
+  (http.user_agent wildcard "*bomborabot*") or
+  (http.user_agent wildcard "*buck*") or
+  (http.user_agent wildcard "*bvbot*") or
+  (http.user_agent wildcard "*bytespider*") or
+  (http.user_agent wildcard "*ccbot*") or
+  (http.user_agent wildcard "*checkhost*") or
+  (http.user_agent wildcard "*cincraw*") or
+  (http.user_agent wildcard "*claudebot*") or
+  (http.user_agent wildcard "*clickagy*") or
+  (http.user_agent wildcard "*cocolyzebot*") or
+  (http.user_agent wildcard "*criteobot*") or
+  (http.user_agent wildcard "*df bot 1.0*") or
+  (http.user_agent wildcard "*domainstatsbot*") or
+  (http.user_agent wildcard "*domcopbot*") or
+  (http.user_agent wildcard "*dotbot*") or
+  (http.user_agent wildcard "*globalping*") or
+  (http.user_agent wildcard "*gulperbot*") or
+  (http.user_agent wildcard "*httrack*") or
+  (http.user_agent wildcard "*internet-structure*") or
+  (http.user_agent wildcard "*internetmeasurement*") or
+  (http.user_agent wildcard "*ioncrawl*") 
+)

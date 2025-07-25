@@ -1,0 +1,9 @@
+not cf.client.bot
+and (
+  (ip.src.asnum in {60068 9009 16247 51332 212238 131199 22298 29761 62639 206150 210277 46562 8100 3214 206092 206074 206164 213074})
+  or ip.src.continent in {"NA" "OC" "SA" "T1" "AF" "AN" "AS"}
+  or ip.src.country in {
+    "DE" "NL" "FR" "GB" "IE" "FI" "LU" "BE" "BY" "AL" "XK"
+    "RS" "BG" "UA" "SK" "RO" "MD" "HU" "MT" "HR" "ME" "IT" "RU"
+  }
+)
