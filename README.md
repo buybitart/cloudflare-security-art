@@ -586,6 +586,11 @@ Go to **Security** > **Bots**
 | content-security-policy        | upgrade-insecure-requests; block-all-mixed-content   |
 | permissions-policy             | accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=() |
 
+Go to [**securityheaders.com**](https://securityheaders.com/) securityheaders.com to check the result. Here is mine:
+
+<img width="1207" height="315" alt="image" src="https://github.com/user-attachments/assets/75c54d43-f152-4447-9c58-59d68e9fbb91" />
+
+
 ## References
 
 - https://github.com/sefinek/Cloudflare-WAF-Expressions
