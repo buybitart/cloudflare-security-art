@@ -606,5 +606,7 @@ Go to [**securityheaders.com**](https://securityheaders.com/) securityheaders.co
 ## [MIT License](LICENSE)
 Copyright 2025 © by 5ksana. All Rights Reserved.
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-coff.ee-yellow)](https://coff.ee/bitcoinart)
+
 
 
