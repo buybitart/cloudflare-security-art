@@ -83,21 +83,17 @@ This rule stops bad automated web traffic by checking each request and blocking 
 ```plaintext
 (
   (
-    http.user_agent eq ""
-    or http.user_agent eq " "
-    or http.user_agent eq "'"
-    or http.request.headers["user-agent"][0] eq ""
-    or lower(http.user_agent) contains "prerender"
-    or lower(http.user_agent) contains "headlesschrome"
-    or lower(http.user_agent) contains "puppeteer"
-    or lower(http.user_agent) contains "phantomjs"
-    or lower(http.user_agent) contains "selenium"
-    or lower(http.user_agent) contains "slimerjs"
-    or lower(http.user_agent) contains "nightmare"
-    or lower(http.user_agent) contains "casperjs"
-    or lower(http.user_agent) contains "pyppeteer"
-    or lower(http.user_agent) contains "chromedp"
-    or lower(http.user_agent) contains "chromeless"
+  http.user_agent eq ""
+  or http.user_agent eq " "
+  or http.user_agent eq "'"
+  or http.request.headers["user-agent"][0] eq ""
+  or lower(http.user_agent) contains "puppeteer"
+  or lower(http.user_agent) contains "phantomjs"
+  or lower(http.user_agent) contains "selenium"
+  or lower(http.user_agent) contains "slimerjs"
+  or lower(http.user_agent) contains "nightmare"
+  or lower(http.user_agent) contains "casperjs"
+  or lower(http.user_agent) contains "pyppeteer"
   )
   or (ip.src.asnum in {135061 23724 4808} and http.user_agent contains "siteaudit")
   or (http.host contains ":80")
@@ -109,60 +105,19 @@ This rule stops bad automated web traffic by checking each request and blocking 
     and not http.cookie contains "443"
     and not cf.client.bot
   )
-  or (http.user_agent wildcard "*keys-so-bot*")
-  or (http.user_agent wildcard "*magpie-crawler*")
-  or (http.user_agent wildcard "*masscan*")
-  or (http.user_agent wildcard "*megaindex*")
-  or (http.user_agent wildcard "*mj12bot*")
-  or (http.user_agent wildcard "*nimbostratus*")
-  or (http.user_agent wildcard "*omgili*")
-  or (http.user_agent wildcard "*onalyticabot*")
-  or (http.user_agent wildcard "*palo alto networks company*")
-  or (http.user_agent wildcard "*panscient.com*")
-  or (http.user_agent wildcard "*peer39_crawler*")
-  or (http.user_agent wildcard "*proximic*")
-  or (http.user_agent wildcard "*riddler*")
-  or (http.user_agent wildcard "*rogerbot*")
-  or (http.user_agent wildcard "*sbl-bot*")
-  or (http.user_agent wildcard "*semantic-visions*")
-  or (http.user_agent wildcard "*semanticbot*")
-  or (http.user_agent wildcard "*serpstatbot*")
-  or (http.user_agent wildcard "*sqlmap*")
-  or (http.user_agent wildcard "*thinkbot*")
-  or (http.user_agent wildcard "*trendictionbot*")
-  or (http.user_agent wildcard "*ttd-content*")
-  or (http.user_agent wildcard "*voluumdsp*")
-  or (http.user_agent wildcard "*wc-test-dev-bot*")
-  or (http.user_agent wildcard "*webtechbot*")
-  or (http.user_agent wildcard "*whatcms*")
-  or (http.user_agent wildcard "*zgrab*")
-  or (
-    cf.client.bot
-    and not (
-      (
-        cf.verified_bot_category in {"Search Engine Crawler"}
-        and (
-          lower(http.user_agent) contains "google"
-          or lower(http.user_agent) contains "bing"
-          or lower(http.user_agent) contains "slurp"
-          or lower(http.user_agent) contains "duckduckbot"
-          or lower(http.user_agent) contains "cloudflare"
-        )
-      )
-      or lower(http.user_agent) contains "google-inspectiontool"
-      or lower(http.user_agent) contains "google-siteverification"
-      or lower(http.user_agent) contains "googlebot"
-      or lower(http.user_agent) contains "chrome-lighthouse"
-      or http.request.uri.path contains "acme-challenge"
-    )
+  or 
+  (http.request.method eq "GET")
+  and (http.request.uri.path eq "/")
+  and (http.referer eq "" or not lower(http.referer) contains "buybitart.com")
+  and (
+  not any(lower(http.request.headers.names[*])[*] eq "accept-language")
+  or
+  (
+    not any(lower(http.request.headers.names[*])[*] eq "sec-fetch-site")
+    and not any(lower(http.request.headers.names[*])[*] eq "sec-fetch-mode")
+    and not any(lower(http.request.headers.names[*])[*] eq "sec-fetch-dest")
   )
-)
-or
-(
-  http.request.version in {"HTTP/1.0" "HTTP/1.1"}
-  and not (
-    lower(http.request.uri.path) contains "/robots.txt"
-  )
+ )
   and not (
     cf.client.bot
     or lower(http.user_agent) contains "google"
@@ -175,8 +130,56 @@ or
     or lower(http.user_agent) contains "googlebot"
     or lower(http.user_agent) contains "chrome-lighthouse"
     or http.request.uri.path contains "acme-challenge"
+    or lower(http.user_agent) contains "adsbot-google"
+    or lower(http.user_agent) contains "google-adwords"
+
+  )
+  or (
+    cf.client.bot
+    and not (
+      (
+        cf.verified_bot_category in {"Search Engine Crawler"}
+        and (
+          lower(http.user_agent) contains "google"
+          or lower(http.user_agent) contains "bing"
+          or lower(http.user_agent) contains "slurp"
+          or lower(http.user_agent) contains "duckduckbot"
+          or lower(http.user_agent) contains "cloudflare"
+
+        )
+      )
+      or lower(http.user_agent) contains "google-inspectiontool"
+      or lower(http.user_agent) contains "google-siteverification"
+      or lower(http.user_agent) contains "googlebot"
+      or lower(http.user_agent) contains "chrome-lighthouse"
+      or http.request.uri.path contains "acme-challenge"
+      or lower(http.user_agent) contains "adsbot-google"
+      or lower(http.user_agent) contains "google-adwords"
+    
+       )
   )
 )
+or
+(
+  http.request.version in {"HTTP/1.0" "HTTP/1.1"}
+  and not (
+    cf.client.bot
+    or lower(http.user_agent) contains "google"
+    or lower(http.user_agent) contains "bing"
+    or lower(http.user_agent) contains "slurp"
+    or lower(http.user_agent) contains "duckduckbot"
+    or lower(http.user_agent) contains "cloudflare"
+    or lower(http.user_agent) contains "google-inspectiontool"
+    or lower(http.user_agent) contains "google-siteverification"
+    or lower(http.user_agent) contains "googlebot"
+    or lower(http.user_agent) contains "chrome-lighthouse"
+    or http.request.uri.path contains "acme-challenge"
+    or lower(http.user_agent) contains "adsbot-google"
+    or lower(http.user_agent) contains "google-adwords"
+
+  )
+)
+
 ```
 
 ### Part 2 – Block AI and Bad Crawlers
@@ -255,12 +258,18 @@ This rule blocks many automated bots and crawlers. It stops AI crawlers like "am
           or lower(http.user_agent) contains "slurp"
           or lower(http.user_agent) contains "duckduckbot"
           or lower(http.user_agent) contains "cloudflare"
+          or lower(http.user_agent) contains "adsbot-google-mobile"
+          or lower(http.user_agent) contains "google-adwords"
         )
       )
       or lower(http.user_agent) contains "google-inspectiontool"
       or lower(http.user_agent) contains "google-siteverification"
       or lower(http.user_agent) contains "googlebot"
       or lower(http.user_agent) contains "chrome-lighthouse"
+      or lower(http.user_agent) contains "adsbot-google"
+      or lower(http.user_agent) contains "google-adwords"
+      or lower(http.user_agent) contains "prerender"
+      or lower(http.user_agent) contains "headlesschrome"
     )
     and not http.request.uri.path contains "acme-challenge"
   )
@@ -279,6 +288,9 @@ It also stops strange path symbols (\ or //) and a special cat API request if IP
 (cf.waf.credential_check.password_leaked) or
 (http.referer eq "binance.com") or
 (http.referer eq "google.com") or
+(http.referer eq "https://google.com") or
+(http.referer eq "bing.com") or
+(http.referer eq "https://bing.com") or
 (http.referer eq "http://n666888.com") or
 (http.request.full_uri eq "https://api.sefinek.net/api/v2/random/animal/cat" and ip.geoip.asnum eq 8075 and http.user_agent eq "python-requests/2.31.0") or
 (http.request.uri.path contains "\\") or
@@ -328,9 +340,12 @@ It also stops strange path symbols (\ or //) and a special cat API request if IP
 (http.request.uri.query wildcard "*etc/passwd*") or
 (http.user_agent contains "   ") or
 (http.user_agent eq "" and not http.host contains "api." and not http.host contains "cdn." and http.host ne "blocklist.sefinek.net") or
+(http.user_agent eq "Mozilla/5.0 (Windows NT 10.0; Win64; x64)") or
+(http.user_agent eq "Mozilla/5.0") or
 (http.user_agent wildcard "*embeddedbrowser*" and not http.host contains "api." and not http.host contains "cdn.") or
 (http.user_agent wildcard "*go-http-client*" and not http.host contains "api." and not http.host contains "cdn." and http.host ne "blocklist.sefinek.net") or
-(http.user_agent wildcard "*headless*" and not http.host contains "api." and not http.host contains "cdn.") or
+(http.user_agent wildcard "*headless*" and not (lower(http.user_agent) contains "prerender")) or
+(http.user_agent wildcard "*mozilla/4.0*") or
 (http.user_agent wildcard "*private_keys*") or
 (http.user_agent wildcard "*windows 11*")
 ```
@@ -342,14 +357,19 @@ This rule stops tools like “curl”, “wget”, “aiohttp”, “python‑re
 **Action:** Block
 
 ```plaintext
-(http.request.uri.path eq "/" and 
-  (http.user_agent contains "aiohttp" or
-   http.user_agent contains "curl" or
-   http.user_agent contains "okhttp" or
-   http.user_agent contains "python-requests" or
-   http.user_agent contains "python-httpx" or
-   http.user_agent contains "node" or
-   http.user_agent contains "wget")) or
+(
+  http.user_agent contains "aiohttp" or
+  http.user_agent contains "aioquic" or
+  http.user_agent contains "curl" or
+  http.user_agent contains "okhttp" or
+  http.user_agent contains "python-requests" or
+  http.user_agent contains "python-httpx" or
+  http.user_agent contains "wget"
+) and not (
+  starts_with(http.host, "api.") or
+  starts_with(http.host, "cdn.") or
+  http.host eq "blocklist.sefinek.net"
+) or
 (http.request.uri.path wildcard "*.log*" and not http.host contains "cdn." and http.host ne "blocklist.sefinek.net") or
 (http.request.uri.path wildcard "*.py*") or
 (http.request.uri.path wildcard "*.sh*" and http.host ne "cdn.sefinek.net") or
@@ -422,10 +442,7 @@ http.request.uri.query contains "script>") or
 (http.request.uri.query contains "<image") or 
 (http.request.uri.query contains "document.cookie") or 
 (http.request.uri.query contains "onerror()") or 
-(http.request.uri.query contains "alert(") or 
-(http.request.uri.query contains "window.") or 
-(http.request.uri.query contains "String.fromCharCode(") or 
-(http.request.uri.query contains "javascript:") 
+(http.request.uri.query contains "alert(") 
 ```
 
 ### Part 5 – Deprecated browsers, etc.
@@ -540,12 +557,12 @@ Cloudflare has many settings you set yourself. In this guide, we turn on only th
 
 #### Security > Rate limiting rules > Create rule
 1. **Rule name:** Default rate limit
-2. Expression: `(starts_with(http.request.uri.path, "/"))`
+2. Expression: `(http.request.uri.path eq "/")`
    - **Field:** URI Path
    - **Operator:** starts with
    - **Value:** /
 3. When rate exceeds…
-   - **Requests:** 40-70 (you should adjust this value yourself based on your website's traffic)
+   - **Requests:** 5 (protection against HTTP/2 Rapid Reset attack (CVE-2023-44487))
    - **Period:** 10 seconds
 4. Then take action…
    - **Choose action:** Block
@@ -592,6 +609,8 @@ Go to **Security** > **Bots**
 Go to [**securityheaders.com**](https://securityheaders.com/) securityheaders.com to check the result. Here is mine:
 
 <img width="1207" height="315" alt="image" src="https://github.com/user-attachments/assets/75c54d43-f152-4447-9c58-59d68e9fbb91" />
+
+
 
 
 ## References
