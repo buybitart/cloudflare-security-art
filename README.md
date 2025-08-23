@@ -108,7 +108,7 @@ This rule stops bad automated web traffic by checking each request and blocking 
   or 
   (http.request.method eq "GET")
   and (http.request.uri.path eq "/")
-  and (http.referer eq "" or not lower(http.referer) contains "buybitart.com")
+  and (http.referer eq "" or not lower(http.referer) contains "your_site.com")
   and (
   not any(lower(http.request.headers.names[*])[*] eq "accept-language")
   or
