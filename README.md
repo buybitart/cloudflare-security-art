@@ -105,35 +105,6 @@ This rule stops bad automated web traffic by checking each request and blocking 
     and not http.cookie contains "443"
     and not cf.client.bot
   )
-  or 
-  (http.request.method eq "GET")
-  and (http.request.uri.path eq "/")
-  and (http.referer eq "" or not lower(http.referer) contains "your_site.com")
-  and (
-  not any(lower(http.request.headers.names[*])[*] eq "accept-language")
-  or
-  (
-    not any(lower(http.request.headers.names[*])[*] eq "sec-fetch-site")
-    and not any(lower(http.request.headers.names[*])[*] eq "sec-fetch-mode")
-    and not any(lower(http.request.headers.names[*])[*] eq "sec-fetch-dest")
-  )
- )
-  and not (
-    cf.client.bot
-    or lower(http.user_agent) contains "google"
-    or lower(http.user_agent) contains "bing"
-    or lower(http.user_agent) contains "slurp"
-    or lower(http.user_agent) contains "duckduckbot"
-    or lower(http.user_agent) contains "cloudflare"
-    or lower(http.user_agent) contains "google-inspectiontool"
-    or lower(http.user_agent) contains "google-siteverification"
-    or lower(http.user_agent) contains "googlebot"
-    or lower(http.user_agent) contains "chrome-lighthouse"
-    or http.request.uri.path contains "acme-challenge"
-    or lower(http.user_agent) contains "adsbot-google"
-    or lower(http.user_agent) contains "google-adwords"
-
-  )
   or (
     cf.client.bot
     and not (
@@ -179,7 +150,6 @@ or
 
   )
 )
-
 ```
 
 ### Part 2 – Block AI and Bad Crawlers
