@@ -422,91 +422,88 @@ This rule stops requests that look unsafe or very old. It blocks any request wit
 **Action:** Block
 
 ```plaintext
-(http.referer contains "http://" and not http.referer contains "localhost" and not http.referer contains "127.0.0.1") or
-(http.request.uri eq "https://sefinek.net/milosna-grota/verification/upload") or
-(http.request.uri.path wildcard "*.php*" and not http.request.uri.path contains "/clientarea.php") or
-(http.request.uri.path wildcard "*/wp-admin*") or
-(http.request.uri.path wildcard "*/wp-includes*") or
-(http.user_agent contains "Windows NT 5" and not http.user_agent contains "(via ggpht.com GoogleImageProxy)") or
-(http.user_agent wildcard "*android 8*") or
-(http.user_agent wildcard "*chrome/100*") or
-(http.user_agent wildcard "*chrome/101.*") or
-(http.user_agent wildcard "*chrome/103*") or
-(http.user_agent wildcard "*chrome/104.*") or
-(http.user_agent wildcard "*chrome/112*") or
-(http.user_agent wildcard "*chrome/113*") or
-(http.user_agent wildcard "*chrome/114*") or
-(http.user_agent wildcard "*chrome/118*") or
-(http.user_agent wildcard "*chrome/120*") or
-(http.user_agent wildcard "*chrome/17*") or
-(http.user_agent wildcard "*chrome/30*") or
-(http.user_agent wildcard "*chrome/31*") or
-(http.user_agent wildcard "*chrome/32*") or
-(http.user_agent wildcard "*chrome/33*") or
-(http.user_agent wildcard "*chrome/34*") or
-(http.user_agent wildcard "*chrome/35*") or
-(http.user_agent wildcard "*chrome/36*") or
-(http.user_agent wildcard "*chrome/37*") or
-(http.user_agent wildcard "*chrome/38*") or
-(http.user_agent wildcard "*chrome/39*") or
-(http.user_agent wildcard "*chrome/41*") or
-(http.user_agent wildcard "*chrome/42*") or
-(http.user_agent wildcard "*chrome/44*") or
-(http.user_agent wildcard "*chrome/48*") or
-(http.user_agent wildcard "*chrome/49*") or
-(http.user_agent wildcard "*chrome/52*") or
-(http.user_agent wildcard "*chrome/53*") or
-(http.user_agent wildcard "*chrome/58*") or
-(http.user_agent wildcard "*chrome/60*") or
-(http.user_agent wildcard "*chrome/61*") or
-(http.user_agent wildcard "*chrome/62*") or
-(http.user_agent wildcard "*chrome/64*") or
-(http.user_agent wildcard "*chrome/65*") or
-(http.user_agent wildcard "*chrome/67*") or
-(http.user_agent wildcard "*chrome/68*") or
-(http.user_agent wildcard "*chrome/69*") or
-(http.user_agent wildcard "*chrome/71*") or
-(http.user_agent wildcard "*chrome/73*") or
-(http.user_agent wildcard "*chrome/74*" and not http.user_agent contains "Better Uptime Bot") or
-(http.user_agent wildcard "*chrome/77*") or
-(http.user_agent wildcard "*chrome/78*") or
-(http.user_agent wildcard "*chrome/79*") or
-(http.user_agent wildcard "*chrome/80*") or
-(http.user_agent wildcard "*chrome/81*") or
-(http.user_agent wildcard "*chrome/83*") or
-(http.user_agent wildcard "*chrome/84*") or
-(http.user_agent wildcard "*chrome/85*") or
-(http.user_agent wildcard "*chrome/86*") or
-(http.user_agent wildcard "*chrome/87*") or
-(http.user_agent wildcard "*chrome/88*") or
-(http.user_agent wildcard "*chrome/89*") or
-(http.user_agent wildcard "*chrome/91*") or
-(http.user_agent wildcard "*chrome/92*") or
-(http.user_agent wildcard "*chrome/93*") or
-(http.user_agent wildcard "*chrome/94*") or
-(http.user_agent wildcard "*chrome/95*") or
-(http.user_agent wildcard "*chrome/96*") or
-(http.user_agent wildcard "*chrome/97*") or
-(http.user_agent wildcard "*chrome/98*") or
-(http.user_agent wildcard "*crios/121*") or
-(http.user_agent wildcard "*firefox/114*") or
-(http.user_agent wildcard "*firefox/3.5*") or
-(http.user_agent wildcard "*firefox/45*") or
-(http.user_agent wildcard "*firefox/52*") or
-(http.user_agent wildcard "*firefox/57*") or
-(http.user_agent wildcard "*firefox/62*") or
-(http.user_agent wildcard "*firefox/76*") or
-(http.user_agent wildcard "*firefox/77*") or
-(http.user_agent wildcard "*firefox/79*") or
-(http.user_agent wildcard "*firefox/83*") or
-(http.user_agent wildcard "*firefox/84*") or
-(http.user_agent wildcard "*html5plus*") or
-(http.user_agent wildcard "*mac os x 10_9*") or
-(http.user_agent wildcard "*msie 9.0*") or
-(http.user_agent wildcard "*msie*") or
-(http.user_agent wildcard "*netfront*") or
-(http.user_agent wildcard "*symbianos*") or
-(http.user_agent wildcard "*trident/")
+(
+  (http.referer contains "http://" and not http.referer contains "localhost" and not http.referer contains "127.0.0.1")
+  or (http.request.uri.path wildcard "*.php*" and not http.request.uri.path contains "/clientarea.php")
+  or (http.request.uri.path wildcard "*/wp-admin*")
+  or (http.request.uri.path wildcard "*/wp-content*")
+  or (http.request.uri.path wildcard "*/wp-includes*")
+  or (http.user_agent contains "Windows NT 5" and not http.user_agent contains "(via ggpht.com GoogleImageProxy)")
+  or (http.user_agent wildcard "*android 8*")
+
+  or (http.user_agent wildcard "*chrome/101.*")
+  or (http.user_agent wildcard "*chrome/103.*")
+  or (http.user_agent wildcard "*chrome/104.*")
+  or (http.user_agent wildcard "*chrome/112.*")
+  or (http.user_agent wildcard "*chrome/113.*")
+  or (http.user_agent wildcard "*chrome/114.*")
+  or (http.user_agent wildcard "*chrome/118.*")
+  or ((http.user_agent wildcard "*chrome/119.*") and ip.geoip.asnum ne 14618)
+  or (http.user_agent wildcard "*chrome/120.*")
+  or (http.user_agent wildcard "*chrome/122.*")
+  or (http.user_agent wildcard "*chrome/17.*")
+  or (http.user_agent wildcard "*chrome/30.*")
+  or (http.user_agent wildcard "*chrome/31.*")
+  or (http.user_agent wildcard "*chrome/32.*")
+  or (http.user_agent wildcard "*chrome/33.*")
+  or (http.user_agent wildcard "*chrome/34.*")
+  or (http.user_agent wildcard "*chrome/35.*")
+  or (http.user_agent wildcard "*chrome/36.*")
+  or (http.user_agent wildcard "*chrome/37.*")
+  or (http.user_agent wildcard "*chrome/38.*")
+  or (http.user_agent wildcard "*chrome/39.*")
+  or (http.user_agent wildcard "*chrome/41.*")
+  or (http.user_agent wildcard "*chrome/42.*")
+  or (http.user_agent wildcard "*chrome/44.*")
+  or (http.user_agent wildcard "*chrome/48.*")
+  or (http.user_agent wildcard "*chrome/49.*")
+  or (http.user_agent wildcard "*chrome/52.*")
+  or (http.user_agent wildcard "*chrome/53.*")
+  or (http.user_agent wildcard "*chrome/58.*")
+  or (http.user_agent wildcard "*chrome/59.*")
+  or (http.user_agent wildcard "*chrome/60.*")
+  or (http.user_agent wildcard "*chrome/61.*")
+  or (http.user_agent wildcard "*chrome/62.*")
+  or (http.user_agent wildcard "*chrome/64.*")
+  or (http.user_agent wildcard "*chrome/65.*")
+  or (http.user_agent wildcard "*chrome/67.*")
+  or (http.user_agent wildcard "*chrome/68.*")
+  or (http.user_agent wildcard "*chrome/69.*")
+  or (http.user_agent wildcard "*chrome/71.*")
+  or (http.user_agent wildcard "*chrome/73.*")
+  or ((http.user_agent wildcard "*chrome/74.*") and not http.user_agent contains "Better Uptime Bot")
+  or (http.user_agent wildcard "*chrome/77.*")
+  or (http.user_agent wildcard "*chrome/78.*")
+  or (http.user_agent wildcard "*chrome/79.*")
+  or (http.user_agent wildcard "*chrome/80.*")
+  or (http.user_agent wildcard "*chrome/81.*")
+  or (http.user_agent wildcard "*chrome/83.*")
+  or (http.user_agent wildcard "*chrome/84.*")
+  or (http.user_agent wildcard "*chrome/85.*")
+  or (http.user_agent wildcard "*chrome/86.*")
+  or (http.user_agent wildcard "*chrome/87.*")
+  or (http.user_agent wildcard "*chrome/88.*")
+  or (http.user_agent wildcard "*chrome/89.*")
+  or (http.user_agent wildcard "*chrome/91.*")
+  or (http.user_agent wildcard "*chrome/92.*")
+  or (http.user_agent wildcard "*chrome/93.*")
+  or (http.user_agent wildcard "*chrome/94.*")
+  or (http.user_agent wildcard "*chrome/95.*")
+  or (http.user_agent wildcard "*chrome/96.*")
+  or (http.user_agent wildcard "*chrome/97.*")
+  or (http.user_agent wildcard "*chrome/98.*")
+  or (http.user_agent wildcard "*crios/121.*")
+  or (http.user_agent wildcard "*firefox/45.*")
+  or (http.user_agent wildcard "*firefox/52.*")
+  or (http.user_agent wildcard "*firefox/57.*")
+  or (http.user_agent wildcard "*firefox/62.*")
+  or (http.user_agent wildcard "*firefox/76.*")
+  or (http.user_agent wildcard "*html5plus*")
+  or (http.user_agent wildcard "*msie*")
+  or (http.user_agent wildcard "*netfront*")
+  or (http.user_agent wildcard "*symbianos*")
+  or (http.user_agent wildcard "*trident/*")
+)
 ```
 
 <a id="step-2"></a>
