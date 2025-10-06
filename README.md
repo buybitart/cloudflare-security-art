@@ -529,7 +529,7 @@ Cloudflare has many settings you set yourself. In this guide, we turn on only th
    - **Operator:** starts with
    - **Value:** /
 3. When rate exceeds…
-   - **Requests:** 1 (protection against HTTP/2 Rapid Reset attack (CVE-2023-44487))
+   - **Requests:** 2 (protection against HTTP/2 Rapid Reset attack (CVE-2023-44487))
    - **Period:** 10 seconds
 4. Then take action…
    - **Choose action:** Block
