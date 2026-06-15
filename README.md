@@ -1,10 +1,31 @@
 # Cloudflare Security Configuration (Free Plan) 
 
-I’m Aksana (5Ksana), founder of the open‑source [BitcoinArt project](https://github.com/buybitart/bitcoinart) . My husband Aliaksandr, a few friends, and I built this platform with our own savings so that Bitcoin artists everywhere can run a fully self‑hosted site, sell their handmade work, and accept payments in BTC, USDT (BTCPay), or credit card (Stripe) without middlemen or censorship.
+## About us
 
-If you like what we’re doing, please consider a donation-any amount helps us keep improving the gallery, auction tools, and multilingual support for creators around the world. Thank you for helping us protect artistic freedom and grow Bitcoin culture.
+I’m **Aksana (5Ksana)**, founder of the open-source **BitcoinArt** project.
+My husband, **Aliaksandr (ALEX) Zasinets**, helps with security, testing, and open-source tools.
+Aliaksandr is a **QA Automation Engineer**, **Penetration Tester**, and open-source security researcher.
+He works on website security, Cloudflare protection, WAF rules, DDoS protection, security headers, bot protection, and protection from bad scanners.
+Apple thanked Aliaksandr for finding and reporting security problems in web servers.
 
-If you'd like to support the project, please visit the [**donation page**](https://buybitart.com/support). or If this repo made your life a little easier, please consider dropping a star ⭐ it really helps and totally makes my day! Thank you! 💖
+He is listed in Apple Security Acknowledgements:  
+https://support.apple.com/en-ug/102774
+
+<img width="1280" height="679" alt="1774344075952" src="https://github.com/user-attachments/assets/330264f7-73e2-4765-9755-77b05dc3fe3e" />
+
+
+### Links
+
+- LinkedIn: https://www.linkedin.com/in/aliaksandr-zasinets-qa
+- Website: https://www.bitart.pro/
+
+This repository, **cloudflare-security-art**, is a free security guide for small websites, artists, creators, and self-hosted projects using Cloudflare.
+If this project helps you protect your website, please support our open-source work through GitHub Sponsors:
+
+https://github.com/sponsors/buybitart
+
+Your support helps us test Cloudflare security rules, update this guide, write simple examples, and keep this project free.
+If this repo helped you, please also give it a star ⭐. It helps the project grow. Thank you! ❤️
 
 **This guide will help you protect your website using Cloudflare. It includes firewall rules, DDoS protection, security headers, and bot settings.**
 
