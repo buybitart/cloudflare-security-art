@@ -547,7 +547,7 @@ Cloudflare has many settings you set yourself. In this guide, we turn on only th
 1. **Rule name:** Default rate limit
 2. Expression: `(http.request.uri.path eq "/")`
    - **Field:** URI Path
-   - **Operator:** starts with
+   - **Operator:** equals
    - **Value:** /
 3. When rate exceeds…
    - **Requests:** 2 (protection against HTTP/2 Rapid Reset attack (CVE-2023-44487))
