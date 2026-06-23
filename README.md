@@ -90,7 +90,7 @@ Copy these expressions into your Cloudflare dashboard for custom WAF rules.
 
 Read [Create a custom rule in the dashboard](https://developers.cloudflare.com/waf/custom-rules/create-dashboard/).
 
-<img width="1066" height="410" alt="image" src="https://github.com/user-attachments/assets/6c77eaae-0e9a-496c-84b4-2a91518f7af3" />
+<img width="1360" height="806" alt="Screenshot_4" src="https://github.com/user-attachments/assets/e73f55c7-3a27-4726-bbf9-a7d40e4548cc" />
 
 
 ### Part 1 – Block Bot Parasites
@@ -140,6 +140,7 @@ This rule stops bad automated web traffic by checking each request and blocking 
 
         )
       )
+      or cf.verified_bot_category in {"Page Preview"}
       or lower(http.user_agent) contains "google-inspectiontool"
       or lower(http.user_agent) contains "google-siteverification"
       or lower(http.user_agent) contains "googlebot"
@@ -156,6 +157,7 @@ or
   http.request.version in {"HTTP/1.0" "HTTP/1.1"}
   and not (
     cf.client.bot
+    or cf.verified_bot_category in {"Page Preview"}
     or lower(http.user_agent) contains "google"
     or lower(http.user_agent) contains "bing"
     or lower(http.user_agent) contains "slurp"
@@ -263,6 +265,7 @@ This rule blocks many automated bots and crawlers. It stops AI crawlers like "am
       or lower(http.user_agent) contains "headlesschrome"
     )
     and not http.request.uri.path contains "acme-challenge"
+    and not cf.verified_bot_category in {"Page Preview"}
   )
 )
 ```
@@ -440,7 +443,7 @@ http.request.uri.query contains "script>") or
 
 This rule stops requests that look unsafe or very old. It blocks any request with a referer that has "http://" from another site, unless it is "localhost" or "127.0.0.1". It also blocks a specific upload URL on sefinek.net. It does not allow requests for any ".php" files except "clientarea.php", and it blocks access to WordPress admin ("wp-admin") and includes ("wp-includes") folders. It also rejects requests from very old browsers and bots by checking for old versions of Chrome, Firefox, Internet Explorer, Android 8, Symbian, Mac OS X 10.9 and similar user‑agent strings.
 
-**Action:** Block
+**Action:** Managed Challenge
 
 ```plaintext
 (
