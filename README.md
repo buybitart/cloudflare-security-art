@@ -582,7 +582,7 @@ Go to **Security** > **Bots**
 5. Since I need to apply this rule to **All incoming requests** to my website, I select the first option for the If… section.
 6. In the Then… section, I will use Set **static** to set up security headers for my site. Here, I will add **7 recommended security headers**:
 
-<img width="988" height="610" alt="image" src="https://github.com/user-attachments/assets/59dc56ff-29c6-48a4-a7e3-fbce86f02028" />
+<img width="1056" height="766" alt="image" src="https://github.com/user-attachments/assets/514468c7-1f86-4dca-ad46-1ab31cbf46f4" />
 
 
 
@@ -595,6 +595,8 @@ Go to **Security** > **Bots**
 | referrer-policy                | no-referrer-when-downgrade                           |
 | content-security-policy        | upgrade-insecure-requests; block-all-mixed-content   |
 | permissions-policy             | accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=() |
+| X-Content-Type-Options         | nosniff   |
+
 
 Go to [**securityheaders.com**](https://securityheaders.com/) securityheaders.com to check the result. Here is mine:
 
