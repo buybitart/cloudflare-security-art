@@ -17,7 +17,7 @@
 - ✅ Based on a [**ZERO TRUST**](https://4sysops.com/archives/block-ai-scrapers-and-other-web-parasites-with-cloudflare/) approach
 
 **AI bots try to copy your content!**.
-See [**How AI is stealing your art**](https://juliabausenhardt.com/how-ai-is-stealing-your-art/) and [**‘Mass theft’: Thousands of artists call for AI art auction to be cancelled**](https://www.theguardian.com/technology/2025/feb/10/mass-theft-thousands-of-artists-call-for-ai-art-auction-to-be-cancelled) 
+See [**Is AI the greatest art heist in history?**](https://www.theguardian.com/books/2026/apr/12/is-ai-the-greatest-art-heist-in-history) and [**‘Mass theft’: Thousands of artists call for AI art auction to be cancelled**](https://www.theguardian.com/technology/2025/feb/10/mass-theft-thousands-of-artists-call-for-ai-art-auction-to-be-cancelled) 
 > **"One of the main points of art is to dialogue with culture.**  
 > Even if unintentional, every piece of art reflects the unique background of its creator-shaped by food, religion, music, ethics, visual art, and more.  
 > 
@@ -29,6 +29,8 @@ See [**How AI is stealing your art**](https://juliabausenhardt.com/how-ai-is-ste
 > They carry experience, emotion, and intention. They borrow from the past, mix it with the present, and speak in their own voice. That’s art. That’s the difference.
 >
 > When art is just imitation for profit, it’s empty. But when it speaks-it matters."
+> 
+> In 2024, OpenAI’s chief technology officer Mira Murati told an interviewer that the creative jobs destroyed by her company’s product maybe “shouldn’t have been there in the first place”.
 
 AI pretend to be search engines, but they don't bring you visitors.  
 Some even use fake user agents, so basic Cloudflare settings may not stop them.
