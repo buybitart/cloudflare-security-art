@@ -2,6 +2,8 @@
 
 **This guide helps you protect your website using Cloudflare's Free Plan. The goal is to make website security simple and reliable with WAF rules, DDoS protection, security headers, and bot settings.**
 
+Free Cloudflare WAF rules for artists, bloggers, and small websites. Block unwanted bots, AI crawlers, and suspicious requests with the Free Plan.
+
 **It includes**:
 
 - ✅ Firewall rules  
@@ -37,6 +39,9 @@ Some even use fake user agents, so basic Cloudflare settings may not stop them.
 This rule blocks **all** bots by default, and then **only allows useful bots** that help your website get indexed.
 I highly recommend reading [Block AI scrapers with Cloudflare](https://4sysops.com/archives/block-ai-scrapers-and-other-web-parasites-with-cloudflare/).
 
+<img width="1764" height="881" alt="2" src="https://github.com/user-attachments/assets/a7bf76af-6f45-4892-8e75-476d338357c6" />
+
+
 | Step | Description |
 |------|-------------|
 | [**STEP 1 – Web Application Firewall (WAF) Rules**](#step-1) | Blocks bots, crawlers, exploits and malicious requests (Parts 1‑5). |
@@ -44,15 +49,42 @@ I highly recommend reading [Block AI scrapers with Cloudflare](https://4sysops.c
 | [**STEP 3 – Bot Management**](#step-3) | Configures Cloudflare bot settings to block AI and unwanted bots. |
 | [**STEP 4 – Security Headers**](#step-4) | Sets recommended HTTP headers to harden the site. |
 
-> [!IMPORTANT]  
-> It is also recommended to **disable** the **`Bot Fight Mode`** feature in the **`Security`** tab.  
-> This guide already blocks all unwanted bots and AI crawlers while allowing only the important and trusted bots used for indexing your site such as:  
-> - google  
-> - bing  
-> - slurp  
-> - duckduckbot  
-> - cloudflare  
-> Because of this, there is no need to enable Bot Fight Mode as it could interfere with these allowed bots and disrupt proper indexing.
+> [!IMPORTANT]
+> **Bot Fight Mode: Off**
+>
+> I recommend disabling **Bot Fight Mode** in Cloudflare Security settings.
+>
+> This guide uses WAF rules to block unwanted bots and AI crawlers. Rule 1 makes exceptions for selected verified bots.
+>
+> **Allowed bot categories:**
+> - Search Engine Crawler
+> - Page Preview
+> - Security
+>
+> **User-Agent matches:**
+> - google
+> - bing
+> - slurp
+> - duckduckbot
+> - cloudflare
+> - google-inspectiontool
+> - google-siteverification
+> - telegram
+> - googlebot
+> - chrome-lighthouse
+> - adsbot-google
+> - google-adwords
+> - let's encrypt
+>
+> **URL path matches:**
+> - acme-challenge
+> - pki-validation
+>
+> The exception requires a matching verified bot category and one of the listed User-Agent or URL path values.
+>
+> Bot Fight Mode may challenge these bots, so I keep it disabled.
+>
+> **Note:** These exceptions apply only to one part of Rule 1. Other WAF checks and rules can still block these requests.
 
 ---
 
