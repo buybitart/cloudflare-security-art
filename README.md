@@ -37,7 +37,14 @@ See [**Is AI the greatest art heist in history?**](https://www.theguardian.com/b
 AI pretend to be search engines, but they don't bring you visitors.  
 Some even use fake user agents, so basic Cloudflare settings may not stop them.
 This rule blocks **all** bots by default, and then **only allows useful bots** that help your website get indexed.
-I highly recommend reading [Block AI scrapers with Cloudflare](https://4sysops.com/archives/block-ai-scrapers-and-other-web-parasites-with-cloudflare/).
+I highly recommend reading **[Block AI scrapers with Cloudflare](https://4sysops.com/archives/block-ai-scrapers-and-other-web-parasites-with-cloudflare/)** and **[My Blog's Biggest Fans Are AI Bots. So I Fought Back](https://ranthebuilder.cloud/blog/my-blogs-biggest-fans-are-ai-bots-so-i-fought-back/)**.
+
+### So Why I Block AI Bots
+- **Save server resources** and reduce costs.
+- **Keep analytics clean** from bot traffic.
+- **Protect my content** from AI scrapers.
+- **Keep my website fast** by reducing bot requests.
+- **Block fake AI bots** used by hackers.
 
 <img width="1764" height="881" alt="2" src="https://github.com/user-attachments/assets/a7bf76af-6f45-4892-8e75-476d338357c6" />
 
